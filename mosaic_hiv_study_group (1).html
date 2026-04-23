@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOSAIC-HIV Study Group</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --navy: #1a3a5c;
+      --navy-light: #2d5380;
+      --navy-pale: #eaf0f7;
+      --accent: #b07d2b;
+      --accent-light: #f5edda;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --border: #d1dae5;
+      --bg: #fafbfc;
+      --white: #ffffff;
+      --green: #1a6e4a;
+      --green-light: #e8f5ee;
+      --purple: #3d2b7c;
+      --purple-light: #eeebf8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f7f9fc 0%, #eef3f8 100%);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .site-header {
+      background: linear-gradient(135deg, var(--navy) 0%, #142b45 100%);
+      color: white;
+      padding: 40px 48px 32px;
+      border-bottom: 4px solid var(--accent);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-header::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -50px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      filter: blur(2px);
+    }
+
+    .header-label {
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #9ec0df;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.1;
+      max-width: 980px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-subtitle {
+      max-width: 920px;
+      margin-top: 14px;
+      font-size: 14px;
+      color: #d9e7f5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 11px;
+      color: #d7e5f2;
+      white-space: nowrap;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 22px 48px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(18, 38, 63, .06);
+      overflow: hidden;
+    }
+
+    .panel-inner {
+      padding: 24px;
+    }
+
+    .section-heading {
+      font-family: 'EB Garamond', serif;
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .kpi-card {
+      background: linear-gradient(180deg, #fff 0%, #fbfcfe 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .kpi-number {
+      font-family: 'EB Garamond', serif;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-muted);
+    }
+
+    .info-box {
+      background: var(--navy-pale);
+      border-left: 4px solid var(--navy);
+      border-radius: 0 14px 14px 0;
+      padding: 16px 18px;
+      color: var(--navy);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .info-box strong {
+      color: var(--navy);
+    }
+
+    .grid-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .member-card {
+      background: linear-gradient(180deg, #fff 0%, #fcfdff 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 16px 15px;
+      min-height: 92px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .member-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: .01em;
+    }
+
+    .member-role {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .institution-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .institution-card {
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .institution-card h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .institution-card p {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .highlight-band {
+      margin-top: 18px;
+      border-radius: 14px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, var(--accent-light) 0%, #fff8e8 100%);
+      border: 1px solid #e7d4a9;
+      color: #6b4a15;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      background: var(--green-light);
+      border-left: 4px solid var(--green);
+      border-radius: 0 14px 14px 0;
+      padding: 15px 18px;
+      font-size: 12.5px;
+      color: #184532;
+      line-height: 1.65;
+    }
+
+    .small-caps {
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .section-block {
+      margin-top: 22px;
+    }
+
+    .affiliation-compact {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    @media (max-width: 980px) {
+      .intro-grid,
+      .member-grid,
+      .institution-list,
+      .kpi-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .header-title { font-size: 30px; }
+    }
+
+    @media (max-width: 680px) {
+      .site-header { padding: 34px 20px 28px; }
+      .container { padding: 18px 14px 34px; }
+      .intro-grid,
+      .member-grid,
+      .institution-list,
+      .kpi-strip {
+        grid-template-columns: 1fr;
+      }
+      .header-title { font-size: 27px; }
+      .panel-inner { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-label">Collaborative Academic Network</div>
+    <div class="header-title">MOSAIC-HIV Study Group</div>
+    <div class="header-subtitle">
+      Grupo interinstitucional de investigación y formación académica vinculado a proyectos en VIH, medicina, enfermería y neuropsicología en Guadalajara y Morelia, México.
+    </div>
+    <div class="header-meta">
+      <span class="badge">Universidad de Guadalajara</span>
+      <span class="badge">CUCS</span>
+      <span class="badge">InIVIH</span>
+      <span class="badge">Hospital Civil de Guadalajara</span>
+      <span class="badge">UMSNH</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="intro-grid">
+      <section class="panel">
+        <div class="panel-inner">
+          <div class="section-heading">Study Group Profile</div>
+          <div class="section-sub">
+            Organized roster of the MOSAIC-HIV Study Group with institutional affiliations represented in a clean academic format.
+          </div>
+
+          <div class="kpi-strip">
+            <div class="kpi-card">
+              <div class="kpi-number">17</div>
+              <div class="kpi-label">Members</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">5</div>
+              <div class="kpi-label">Institutional nodes</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">2</div>
+              <div class="kpi-label">Cities</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">1</div>
+              <div class="kpi-label">Collaborative network</div>
+            </div>
+          </div>
+
+          <div class="highlight-band">
+            <strong>Award recognition:</strong> We were awarded <strong>Best Presentation</strong> at the <em>The 3rd International Online Conference on Vaccines</em>.
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-inner">
+          <div class="small-caps">Group identity</div>
+          <div class="section-heading" style="font-size:22px;margin-bottom:10px;">MOSAIC-HIV Study Group</div>
+          <div class="affiliation-compact">
+            Interinstitutional collaboration integrating clinicians, medical students, nursing students, and graduate trainees from the University of Guadalajara and the Universidad Michoacana de San Nicolás de Hidalgo.
+          </div>
+
+          <div class="section-block">
+            <div class="small-caps">Primary settings</div>
+            <div class="affiliation-compact">
+              Centro Universitario de Ciencias de la Salud (CUCS), Instituto de Investigaciones en Inmunodeficiencias y VIH (InIVIH), Departamento de Clínicas Médicas, Hospital Civil de Guadalajara “Dr. Juan I. Menchaca”, Hospital Civil de Guadalajara “Fray Antonio Alcalde”, Licenciatura en Enfermería, Maestría en Neuropsicología, and Facultad de Ciencias Médicas y Biológicas “Dr. Ignacio Chávez”.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-bottom:22px;">
+      <div class="panel-inner">
+        <div class="grid-title">
+          <div>
+            <div class="section-heading" style="margin-bottom:6px;">Members</div>
+            <div class="section-sub" style="margin-bottom:0;">Alphabetical presentation of the names provided.</div>
+          </div>
+        </div>
+
+        <div class="member-grid">
+          <div class="member-card"><div class="member-name">C. Domínguez-Vargas</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">J.E. García-Hernández</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">E. Peña-Durán</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">D.J. Márquez-González</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">D.M. Robles-Loera</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">S.J. Ramírez-Flores</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">D.H. Aceves-Castillo</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">C.M. Álvarez-Dávalos</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">L. Meza-Noyola</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">U.M. González-Reyes</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">A. García-Gómez</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">R.J. Chávez-Hernández</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">K.F. Chávez-Hernández</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">U.J. Cárdenas-Rebollar</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">P.M. Prado-López</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">R.E. Martínez-Hernández</div><div class="member-role">Member</div></div>
+          <div class="member-card"><div class="member-name">MOSAIC-HIV Study Group</div><div class="member-role">Collective authorship</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-inner">
+        <div class="grid-title">
+          <div>
+            <div class="section-heading" style="margin-bottom:6px;">Participating Institutions</div>
+            <div class="section-sub" style="margin-bottom:0;">Institutions and academic units represented in the information provided.</div>
+          </div>
+        </div>
+
+        <div class="institution-list">
+          <div class="institution-card">
+            <h3>Universidad de Guadalajara</h3>
+            <p>Licenciatura en Médico Cirujano y Partero, Centro Universitario de Ciencias de la Salud (CUCS), Guadalajara, Mexico.</p>
+          </div>
+          <div class="institution-card">
+            <h3>Universidad de Guadalajara</h3>
+            <p>Instituto de Investigaciones en Inmunodeficiencias y VIH (InIVIH), Departamento de Clínicas Médicas, Centro Universitario de Ciencias de la Salud (CUCS), Guadalajara, Mexico.</p>
+          </div>
+          <div class="institution-card">
+            <h3>Hospital Civil de Guadalajara</h3>
+            <p>“Dr. Juan I. Menchaca”, Guadalajara, Mexico.</p>
+          </div>
+          <div class="institution-card">
+            <h3>Universidad de Guadalajara</h3>
+            <p>Licenciatura en Enfermería, Centro Universitario de Ciencias de la Salud (CUCS), Guadalajara, Mexico.</p>
+          </div>
+          <div class="institution-card">
+            <h3>Hospital Civil de Guadalajara</h3>
+            <p>“Fray Antonio Alcalde”, Guadalajara, Mexico.</p>
+          </div>
+          <div class="institution-card">
+            <h3>Universidad de Guadalajara</h3>
+            <p>Maestría en Neuropsicología, Centro Universitario de Ciencias de la Salud (CUCS), Guadalajara, Mexico.</p>
+          </div>
+          <div class="institution-card" style="grid-column: 1 / -1;">
+            <h3>Universidad Michoacana de San Nicolás de Hidalgo (UMSNH)</h3>
+            <p>Facultad de Ciencias Médicas y Biológicas “Dr. Ignacio Chávez”, Morelia, Mexico.</p>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          <strong>Contacto:</strong> carlos.dominguez2546@alumnos.udg.mx
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
